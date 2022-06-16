@@ -1,0 +1,552 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Freelancing Portal</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/summernote/summernote-bs4.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper" id="main">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="index3.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link">Contact</a>
+                </li>
+            </ul>
+
+            <!-- SEARCH FORM -->
+            <form class="form-inline ml-3">
+                <div class="input-group input-group-sm">
+                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-navbar" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <ul class="navbar-nav ml-auto">
+                <!-- Notifications Dropdown Menu -->
+                <li class="nav-item dropdown" style="margin-left:500px">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-bell"></i>
+                        <span class="badge badge-warning navbar-badge" id="notfCount"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" id="Notifications">
+                        <span class="dropdown-item dropdown-header">Notifications</span>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-envelope mr-2"></i> 4 new messages
+                            <span class="float-right text-muted text-sm">3 mins</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                    </div>
+                </li>
+            </ul>
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/Home/loginUser">
+                        <i class="fas fa-power-off"></i><span style="margin-left:5px">Log-out</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+                <span class="brand-text font-weight-light">Freelancing Portal</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        @*<img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">*@
+                    </div>
+                    <div class="info" style="background-color: white; width: 200px; border: 1px solid black; border-radius: 5px; text-align: center;">
+                        <a href="/Home/Profile" style="font-weight: 600; color: black; border: 1px solid dodgerblue; border-radius: 5px; padding: 5px;" class="d-block" id="userEmail"></a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+                     with font-awesome or any other icon font library -->
+                        <li class="nav-item" onclick="getActiveOrders()">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Active Orders
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-toggle="modal" data-target="#modal-default">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    New order
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item" onclick="getOrders()">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Order History
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Dashboard</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Dashboard v1</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- Small boxes (Stat box) -->
+                    <div class="row">
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-info">
+                                <div class="inner">
+                                    <h3>150</h3>
+
+                                    <p>New Orders</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-bag"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-success">
+                                <div class="inner">
+                                    <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+                                    <p>Bounce Rate</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-stats-bars"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-warning">
+                                <div class="inner">
+                                    <h3>44</h3>
+
+                                    <p>User Registrations</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-person-add"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-danger">
+                                <div class="inner">
+                                    <h3>65</h3>
+
+                                    <p>Unique Visitors</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-pie-graph"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                    </div>
+                    <!-- /.row -->
+                    <!-- Main row -->
+                    <div class="row" id="mainContainer">
+                        <div class="card" id="tbl_Orders" style="margin-left: 10px;width: 100%;">
+                            <div class="card-header">
+                                <h3 class="card-title">Projects</h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                                        <i class="fas fa-times" onclick="hideTblOrders()"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <table class="table table-striped projects">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 1%">#</th>
+                                            <th>FreeLancer Hired</th>
+                                            <th>Project Name</th>
+                                            <th>Skill Req.</th>
+                                            <th>At</th>
+                                            <th>Due Date</th>
+                                            <th>Budget</th>
+                                            @*<th>Delivery</th>
+                                            <th>Actions</th>*@
+                                        </tr>
+                                    </thead>
+                                    <tbody id="ordersBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+                    <!-- /.row (main row) -->
+                </div><!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 3.0.5
+            </div>
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Modals -->
+        <div class="modal fade" id="modal-default">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="col-md-12">
+                            <!-- general form elements -->
+                            <div class="card card-primary">
+                                <!-- /.card-header -->
+                                <!-- form start -->
+                                <form role="form">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Choose a name for your Project</label>
+                                            <input type="email" class="form-control" id="projectTitle" placeholder="e.g Build me a website">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Skill Requirements</label>
+                                            <select class="form-control select2" id="skill" style="width: 100%;">
+                                                <option selected="selected">Programming & Tech</option>
+                                                <option>Graphic Design</option>
+                                                <option>Content Writing</option>
+                                                <option>Video Editing</option>
+                                                <option>Photo Editing</option>
+                                                <option> Web Application</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Order Type</label>
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <input type="radio" name="userType" required id="urgent" />
+                                                </div>
+                                                <div class="col-5">
+                                                    <span style="width:fit-content">Urgent</span>
+                                                </div>
+                                                <div class="col-1">
+                                                    <input type="radio" name="userType" required id="normal" />
+                                                </div>
+                                                <div class="col-5">
+                                                    <span style="width:fit-content">Normal</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Tell us more about your project</label>
+                                            <textarea type="text" class="form-control" id="pDescription" placeholder="Describe your project here..."></textarea>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6"><input type="number" id="price" placeholder="PKR"></div>
+                                            <div class="col-6"><input type="date" id="date" /></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="uploadedSample">File input</label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="uploadedSample">
+                                                    <label class="custom-file-label" for="uploadedSample">Choose file</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                    <div class="row">
+                                        <div class="col-9"></div>
+                                        <div class="card-footer col-3">
+                                            <button type="button" onclick="postOrder()" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <div class="modal fade" id="modal-default1">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div id="bidDetails" class="modal-body">
+
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/moment/moment.min.js"></script>
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/dist/js/adminlte.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/dist/js/pages/dashboard.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/dist/js/demo.js"></script>
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+        $("#tbl_Orders").hide();
+        $.ajax({
+            type: 'GET',
+            url: '/Home/getUserEmail',
+            success: function (data) {
+                $('#userEmail').text(data);
+            }
+        });
+    });
+    function postOrder() {
+        var date = $("#date").val();
+        var orderType;
+        if ($("#urgent").prop("checked")) {
+            orderType = "Urgent";
+        }
+        else if ($("#normal").prop("checked")) {
+            orderType = "Normal";
+        }
+        else {
+            alert('Please select the order delivery Type');
+            return;
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/Home/postOrder',
+            data: { 'orderType': orderType,'projectTitle': $('#projectTitle').val(), 'pDescription': $('#pDescription').val(), 'skill': $("#skill option:selected").text(), 'compTime': date, 'propRate': $('#price').val()},
+            success: function (data) {
+                alert('Order is ready for Bidding !, Keep on checking the bids');
+            }
+        });
+    }
+    function getOrders() {
+        var HTML = '';
+        $.ajax({
+            type: 'GET',
+            url: '/Home/getMyOrders',
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    //HTML += '<span hidden id="'+data[i].id+'"><span>';
+                    HTML += '<div class="col-md-12"><div class="timeline"><div>';
+                    HTML += '<i class="fas fa-envelope bg-blue"></i>';
+                    HTML += '<div class="timeline-item"><span class="time"><i class="fas fa-clock"></i>' + data[i].postedDate + '</span>';
+                    HTML += '<h3 class="timeline-header"><a href="#">' + data[i].postedBy + '</a> posted a new Job</h3>';
+                    HTML += '<div class="timeline-body"><h3>' + data[i].jobName + '</h3></div><div class="timeline-footer">';
+                    HTML += '<div class="timeline-body">' + data[i].description + '</div>';
+                    HTML += '<div class="timeline-header"><div class="row"><div class="col-4">Skills Required : ' + data[i].skill + '</div>';
+                    HTML += '<div class="col-4">Completion Time : ' + data[i].completionTime + '</div>';
+                    HTML += '<div class="col-4">Proposed rate : $' + data[i].proposedRate + '</div></div></div>';
+                    HTML += '<br><div class="timeline-footer">';
+                    if (data[i].status == "Pending") {
+                        HTML += '<button class="btn btn-warning">Pending</button>';
+                    }
+                    else if (data[i].status == "In Progress") {
+                        HTML += '<button class="btn btn-success">In Progress</button>';
+                    }
+                    HTML += '<button class="btn btn-info" onclick="getBidDetails(`' + data[i].id + '`)" data-toggle="modal" data-target="#modal-default1" style="margin-left:10px">Bidding Details</button>';
+                    HTML += '</div></div></div></div></div></div>';
+                }
+                $("#mainContainer").html(HTML);
+            }
+        });
+    }
+    function getActiveOrders() {
+        var HTML = '';
+        $("#tbl_Orders").show();
+        $.ajax({
+            type: 'GET',
+            url: '/Home/getClientActiveOrders',
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    HTML += '<tr><td>' + (i+1) + '</td>';
+                    HTML += '<td>' + data[i].postedBy + '</td>';
+                    HTML += '<td>' + data[i].jobName + '</td>';
+                    HTML += '<td>' + data[i].skill + '</td>';
+                    HTML += '<td>' + data[i].postedDate + '</td>';
+                    HTML += '<td>' + data[i].completionTime + '</td>';
+                    HTML += '<td>' + data[i].proposedRate + '</td>';
+                    HTML += '<tr/>';
+                }
+                HTML+='</tbody></table></div></div>';
+                $("#ordersBody").html(HTML);
+            }
+        });
+    }
+    function getBidDetails(orderId) {
+        var HTML = '';
+        $.ajax({
+            type: 'POST',
+            url: '/Home/getBidDetails',
+            data: { 'orderId': orderId},
+            success: function (data) {
+                if (data.length == 0) {
+                    HTML = '<h5 style="color:lightgrey;text-align:center;width:100%">No data Found !!</h5>'
+                }
+                for (var i = 0; i < data.length; i++) {
+                    HTML += '<div style="border: 0.5px solid lightgrey; padding: 20px;"><div class="row">';
+                    HTML += '<div class="col-12"><label>Bid # : '+(i+1)+'</label></div>';
+                    HTML += '<div class="col-2"><label>Price : </label></div>';
+                    HTML += '<div class="col-4"><span class="form-control">' + data[i].jobName + '</span></div>';
+                    HTML += '<div class="col-2"><label>Delivery Date : </label></div>';
+                    HTML += '<div class="col-4"><span class="form-control">' + data[i].postedDate + '</span></div></div>';
+                    HTML += '<div class="row">';
+                    HTML += '<div class="col-2"><label>Bid By : </label></div>';
+                    HTML += '<div class="col-4"><span class="form-control">' + data[i].skill + '</span></div>';
+                    HTML += '<div class="col-2"><label>Description : </label></div>';
+                    HTML += '<div class="col-4"><span class="form-control" style="margin-bottom:10px">' + data[i].description + '</span></div></div>';
+                    HTML += '<span class="btn btn-info">Pending</span><span class="btn btn-success" style="margin-left:5px" onclick="acceptBRequest(`' + data[i].id + '`,`' + data[i].skill +'`)">Accept</span><span style="margin-left:5px" class="btn btn-warning" onclick="rejectBRequest(`'+data[i].id+'`,`'+data[i].skill+'`)">Reject</span></div>';
+                }
+                $("#bidDetails").html(HTML);
+            }
+        });
+    }
+    function rejectBRequest(orderId, fid) {
+        $.ajax({
+            type: 'POST',
+            url: '/Home/rejectBRequest',
+            data: { 'orderId': orderId , 'fid' : fid},
+            success: function (data) {
+                alert('Request Rejected !!');
+                getBidDetails();
+            }
+        });
+    }
+    function acceptBRequest(orderId, fid) {
+        $.ajax({
+            type: 'POST',
+            url: '/Home/acceptBRequest',
+            data: { 'orderId': orderId, 'fid': fid },
+            success: function (data) {
+                alert('Request Accepted !!');
+                getBidDetails();
+            }
+        });
+    }
+</script>

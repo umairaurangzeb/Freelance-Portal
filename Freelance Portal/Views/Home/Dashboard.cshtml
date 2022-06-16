@@ -1,0 +1,707 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Freelancing Portal</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/summernote/summernote-bs4.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper" id="main">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link">Home</a>
+                </li>
+                @*<li class="nav-item d-none d-sm-inline-block" onclick="gigWizard()">
+                    <a href="#" class="nav-link">+ New Gig</a>
+                </li>*@
+            </ul>
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Notifications Dropdown Menu -->
+                <li class="nav-item dropdown" style="margin-left:680px">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-bell"></i>
+                        <span class="badge badge-warning navbar-badge" id="notfCount"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" id="Notifications">
+                        <span class="dropdown-item dropdown-header">Notifications</span>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-envelope mr-2"></i> 4 new messages
+                            <span class="float-right text-muted text-sm">3 mins</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/Home/loginUser">
+                        <i class="fas fa-power-off"></i><span style="margin-left:5px">Log-out</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+                <span class="brand-text font-weight-light">Freelancing Portal</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        @*<img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">*@
+                    </div>
+                    <div class="info" style="background-color: white; width: 200px; border: 1px solid black; border-radius: 5px; text-align: center;">
+                        <a href="/Home/Profile" style="font-weight: 600; color: black; border: 1px solid dodgerblue; border-radius: 5px; padding: 5px;" class="d-block" id="userEmail"></a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+                        with font-awesome or any other icon font library -->
+                        <li class="nav-item">
+                            <a style="cursor:pointer" onclick="getActiveOrders()" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Active Orders
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item" onclick="getOrders()" @*data-toggle="modal" data-target="#modal-default"*@>
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Jobs
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item" onclick="getBids()">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    My Bids
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Order History
+                                </p>
+                            </a>
+                        </li>
+                        @*<li class="nav-header">EXAMPLES</li>*@
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper" id="Container">
+            <!-- Content Header (Page header) -->
+            <div class="content-header" id="contentHeader">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Dashboard</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Dashboard v1</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <section class="content" id="content">
+                <div class="container-fluid">
+                    <!-- Small boxes (Stat box) -->
+                    <div class="row">
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-info">
+                                <div class="inner">
+                                    <h3 id="orderCount">150</h3>
+                                    <p>New Orders</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-bag"></i>
+                                </div>
+                                <a style="cursor:pointer" onclick="getOrders()" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-success">
+                                <div class="inner">
+                                    <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+                                    <p>Bounce Rate</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-stats-bars"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-warning">
+                                <div class="inner">
+                                    <h3>44</h3>
+
+                                    <p>User Registrations</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-person-add"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-danger">
+                                <div class="inner">
+                                    <h3>65</h3>
+
+                                    <p>Unique Visitors</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-pie-graph"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                    </div>
+                    <!-- /.row -->
+                    <!-- Main row -->
+                    <div class="row" id="mainContainer">
+                    </div>
+                    <!-- /.row (main row) -->
+                </div><!-- /.container-fluid -->
+            </section>
+            <div class="row" id="gigDetails" style="margin-right: 70px;">
+                <div class="col-12" style="margin: 50px;">
+                    <div class="card card-primary card-outline card-outline-tabs">
+                        <div class="card-header p-0 border-bottom-0">
+                            <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">General</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">Basic</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill" href="#custom-tabs-four-messages" role="tab" aria-controls="custom-tabs-four-messages" aria-selected="false">Premium</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill" href="#custom-tabs-four-settings" role="tab" aria-controls="custom-tabs-four-settings" aria-selected="false">Save</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content" id="custom-tabs-four-tabContent">
+                                <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
+                                    <div style="margin:40px">
+                                        <label style="width: 15%; float: left;">Title</label>
+                                        <textarea type="text" placeholder="I will do something great for you . . . " id="gigTitle" style="outline:none; width:70%; margin: 40px; height: 100px; border: 0.5px solid lightgrey;"></textarea>
+                                    </div>
+                                    <div style="margin:40px">
+                                        <label style="width: 15%; float: left;">Discipline</label>
+                                        <select type="text" id="gigDiscipline" style="padding-left:10px;outline:none; width:70%; margin: 40px; height: 50px; border: 0.5px solid lightgrey;">
+                                            <option>Graphics Designing</option>
+                                            <option>Programming & IT</option>
+                                            <option>Resume Writing</option>
+                                            <option>content Writing</option>
+                                        </select>
+                                    </div>
+                                    @*<div style="margin:40px">
+                                    <label style="width: 15%;float: left;">Description</label>
+                                    <textarea id="gigDescription" placeholder="Describe your Gig here . . . " style="resize:both; outline:none; width:70%; margin: 40px; height: 100px; border: 0.5px solid lightgrey;"></textarea>
+                                </div>*@
+                                </div>
+                                <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
+                                    <h4>Normal Package</h4>
+                                    <div style="margin:40px">
+                                        <label style="width: 15%; float: left;">Description</label>
+                                        <textarea style="resize:both; outline:none; width:70%; margin: 40px; height: 100px; border: 0.5px solid lightgrey;"></textarea>
+                                    </div>
+                                    <div style="margin:40px">
+                                        <label style="width: 15%; float: left;">Days to deliver</label>
+                                        <input type="number" min="0" max="7" style="padding-left:10px;outline:none; width:70%; margin: 40px; height: 50px; border: 0.5px solid lightgrey;" />
+                                    </div>
+                                    <div style="margin:40px">
+                                        <label style="width: 15%; float: left;">Minimum Price</label>
+                                        <input type="number" min="5" style="padding-left:10px;outline:none; width:70%; margin: 40px; height: 50px; border: 0.5px solid lightgrey;" />
+                                    </div>
+                                    <div style="margin:40px">
+                                        <label style="width: 15%; float: left;">Revisions</label>
+                                        <input type="number" min="0" max="5" style="padding-left:10px;outline:none; width:70%; margin: 40px; height: 50px; border: 0.5px solid lightgrey;" />
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel" aria-labelledby="custom-tabs-four-messages-tab">
+                                    <h4>Normal Package</h4>
+                                    <div style="margin:40px">
+                                        <label style="width: 15%; float: left;">Description</label>
+                                        <textarea style="resize:both; outline:none; width:70%; margin: 40px; height: 100px; border: 0.5px solid lightgrey;"></textarea>
+                                    </div>
+                                    <div style="margin:40px">
+                                        <label style="width: 15%; float: left;">Days to deliver</label>
+                                        <input type="number" min="0" max="7" style="padding-left:10px;outline:none; width:70%; margin: 40px; height: 50px; border: 0.5px solid lightgrey;" />
+                                    </div>
+                                    <div style="margin:40px">
+                                        <label style="width: 15%; float: left;">Minimum Price</label>
+                                        <input type="number" min="5" style="padding-left:10px;outline:none; width:70%; margin: 40px; height: 50px; border: 0.5px solid lightgrey;" />
+                                    </div>
+                                    <div style="margin:40px">
+                                        <label style="width: 15%; float: left;">Revisions</label>
+                                        <input type="number" min="0" max="5" style="padding-left:10px;outline:none; width:70%; margin: 40px; height: 50px; border: 0.5px solid lightgrey;" />
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="custom-tabs-four-settings" role="tabpanel" aria-labelledby="custom-tabs-four-settings-tab">
+                                    <button onclick="saveGig()">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+
+            </div>
+            <div class="card" id="tbl_Orders" style="margin-left:10px">
+                <div class="card-header">
+                    <h3 class="card-title">Projects</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                            <i class="fas fa-times" onclick="hideTblOrders()"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-striped projects">
+                        <thead>
+                            <tr>
+                                <th style="width: 1%">#</th>
+                                <th>Posted By</th>
+                                <th>Project Name</th>
+                                <th>Skill Req.</th>
+                                <th>At</th>
+                                <th>Due Date</th>
+                                <th>Budget</th>
+                                <th>Delivery</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersBody">
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+
+            <!-- /.content -->
+        </div>
+
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 3.0.5
+            </div>
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Modals -->
+        <div class="modal fade" id="modal-default">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="col-md-12">
+                            <!-- general form elements -->
+                            <div class="card card-primary">
+                                <!-- /.card-header -->
+                                <!-- form start -->
+                                <form role="form">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Choose a name for your Project</label>
+                                            <input disabled type="email" class="form-control" id="pTitle" placeholder="e.g Build me a website">
+                                        </div>
+                                        <div class="form-group">
+                                            <span id="orderId" hidden></span>
+                                            <label>Skill Requirements</label>
+                                            <input disabled type="text" class="form-control" id="skills" placeholder="e.g Build me a website">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Elaborate your skills</label>
+                                            <textarea type="text" class="form-control" id="pDescription" placeholder="Describe your skill here..."></textarea>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <label for="exampleInputPassword1">Price</label>
+                                            </div>
+                                            <div class="col-8"><input type="number" id="price" placeholder="PKR"></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <label for="exampleInputPassword1">Delivery Date</label>
+                                            </div>
+                                            <div class="col-8"><input type="date" id="date" /></div>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                    <div class="row">
+                                        <div class="col-9"></div>
+                                        <div class="card-footer col-3">
+                                            <button type="button" onclick="saveBid()" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <div class="modal fade" id="modal-defaultDescription">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Project Description :</label>
+                            <textarea disabled class="form-control" id="bidDescription"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/moment/moment.min.js"></script>
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/dist/js/adminlte.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/dist/js/pages/dashboard.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/dist/js/demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+        $("#gigDetails").hide();
+        $("#tbl_Orders").hide();
+        $.ajax({
+            type: 'GET',
+            url: '/Home/getUserEmail',
+            success: function (data) {
+                $('#userEmail').text(data);
+            }
+        });
+        getNotifications();
+    });
+    function getOrders() {
+        $("#tbl_Orders").show();
+        var HTML = '';
+        $.ajax({
+            type: 'GET',
+            url: '/Home/getOrders',
+            success: function (data) {
+                HTML = '';
+                $("#mainContainer").html(HTML);
+                for (var i = 0; i < data.length; i++) {
+                    HTML += '<tr><td>'+ i +'</td>';
+                    HTML += '<td>' + data[i].postedBy +'</td>';
+                    HTML += '<td>' + data[i].jobName +'</td>';
+                    //HTML += '<td>' + data[i].description +'</td>';
+                    HTML += '<td>' + data[i].skill +'</td>';
+                    HTML += '<td>' + data[i].postedDate +'</td>';
+                    HTML += '<td>' + data[i].completionTime +'</td>';
+                    HTML += '<td>' + data[i].proposedRate + '</td>';
+                    if (data[i].deliveryType == 'Normal')
+                        HTML += '<td><span class="btn btn-sm btn-success">' + data[i].deliveryType + '</td>';
+                    else
+                        HTML += '<td><span class="btn btn-sm btn-warning">' + data[i].deliveryType + '</td>';
+                    HTML += '<td style="min-width:130px"><button class="btn btn-primary btn-sm" onclick = "fillModal(`' + data[i].id + '`,`' + data[i].jobName + '`,`' + data[i].skill + '`,`' + data[i].description + '`,`' + data[i].completionTime + '`,`' + data[i].proposedRate + '`)" data-toggle="modal" data-target="#modal-default" style="color:white;margin-right:4px"><i class="fas fa-folder">';
+                    HTML += '</i>Bid</button><span data-toggle="modal" data-target="#modal-defaultDescription" onclick="fillInfoModal(`' + data[i].description+'`)" class="btn btn-rounded btn-info btn-sm" style="color:white;margin-left:15px"><i class="fas fa-info"></i></span></td>';
+                    HTML += '/<tr>';
+                }
+                $("#ordersBody").html(HTML);
+            }
+        });
+    }
+    function getActiveOrders() {
+        $("#tbl_Orders").show();
+        var HTML = '';
+        $.ajax({
+            type: 'GET',
+            url: '/Home/getActiveOrders',
+            success: function (data) {
+                HTML = '';
+                $("#mainContainer").html(HTML);
+                for (var i = 0; i < data.length; i++) {
+                    HTML += '<tr><td>' + i + '</td>';
+                    HTML += '<td>' + data[i].postedBy + '</td>';
+                    HTML += '<td>' + data[i].jobName + '</td>';
+                    HTML += '<td>' + data[i].skill + '</td>';
+                    HTML += '<td>' + data[i].postedDate + '</td>';
+                    HTML += '<td>' + data[i].completionTime + '</td>';
+                    HTML += '<td>' + data[i].proposedRate + '</td>';
+                    if (data[i].deliveryType == 'Normal')
+                        HTML += '<td><span class="btn btn-sm btn-success">' + data[i].deliveryType + '</td>';
+                    else
+                        HTML += '<td><span class="btn btn-sm btn-warning">' + data[i].deliveryType + '</td>';
+                    HTML += '<td style="min-width:130px">';
+                    HTML += '<span data-toggle="modal" data-target="#modal-defaultDescription" onclick="fillInfoModal(`' + data[i].description + '`)" class="btn btn-rounded btn-info btn-sm" style="color:white;margin-left:15px"><i class="fas fa-info"></i></span>';
+                    HTML += '<span class="btn btn-sm btn-success" style="margin-left:10px;cursor:pointer;" title="Mark as Comleted" onclick="deliverProject(`'+data[i].id+'`)">Done</span></td>';
+                    HTML += '/<tr>';
+                }
+                $("#ordersBody").html(HTML);
+            }
+        });
+    }
+    function deliverProject(id) {
+        $.ajax({
+            type: 'POST',
+            url: '/Home/deliverProject',
+            data: {'projId':id},
+            success: function (data) {
+                if (data) {
+                    alert('Project saved as completed');
+                }
+                else {
+                    alert('Error! , Operation Failed!');
+                }
+            }
+        });
+    }
+    function fillInfoModal(desc) {
+        $("#bidDescription").val(desc);
+    }
+    function fillModal(orderId, jobName, skill, description, completiontime, proposedrate) {
+        $("#pTitle").val(jobName);
+        $("#skills").val(skill);
+        //$("#pDescription").val(description);
+        $("#price").val(proposedrate);
+        $("#orderId").val(orderId);
+    }
+    function saveBid(orderId) {
+        var jobName = $("#pTitle").val();
+        var orderId = $("#orderId").val();
+        var description = $("#pDescription").val();
+        var proposedrate = $("#price").val();
+        var deliveryDate = $("#date").val();
+        $.ajax({
+            type: 'POST',
+            url: '/Home/saveBid',
+            data: { 'jobName': jobName, 'orderId': orderId, 'description': description, 'proposedrate': proposedrate, 'deliveryDate': deliveryDate },
+            success: function (data) {
+                if (data) {
+                    alert('Bid Saved !!');
+                }
+                else {
+                    alert('You have already submitted a bid on this order!!');
+                }
+            }
+        });
+    }
+    function getBids() {
+        var HTML = '';
+        $.ajax({
+            type: 'GET',
+            url: '/Home/getBids',
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    HTML += '<div class="col-md-12"><div class="timeline"><div>';
+                    HTML += '<i class="fas fa-envelope bg-blue"></i>';
+                    HTML += '<div class="timeline-item"><span class="time"><i class="fas fa-clock"></i>' + data[i].orderId + ' mins</span>';
+                    HTML += '<h3 class="timeline-header">Your Id :<a href="#">' + data[i].freeLancerId + '</a></h3>';
+                    HTML += '<div class="timeline-body"><h3>' + data[i].desc + '</h3></div><div class="timeline-footer">';
+                    //HTML += '<div class="timeline-body">' + data[i].desc + '</div>';
+                    HTML += '<div class="timeline-header"><div class="row"><div class="col-4">Bid # : ' + data[i].bid + '</div>';
+                    HTML += '<div class="col-4">Completion Time : ' + data[i].deliveryDate + '</div>';
+                    HTML += '<div class="col-4">Proposed rate : $' + data[i].suggPrice + '</div></div></div>';
+                    HTML += '<br><div class="timeline-footer">';
+                    if (data[i].status == 'Pending')
+                    HTML += '<button class="btn btn-warning btn-sm" style="color:white;margin-left:4px">' + data[i].status + '</button>';
+                    else if (data[i].status == 'Accepted')
+                    HTML += '<button class="btn btn-success btn-sm" style="color:white;margin-left:4px">' + data[i].status + '</button>';
+                    else if (data[i].status == 'Declined')
+                    HTML += '<button class="btn btn-danger btn-sm" style="color:white;margin-left:4px">' + data[i].status + '</button>';
+                    HTML += '</div></div></div></div></div></div>';
+                }
+                $("#mainContainer").html(HTML);
+                $("#tbl_Orders").hide();
+            }
+        });
+    }
+    function getNotifications() {
+        var HTML = '<span class="dropdown-item dropdown-header">Notifications</span>';
+        $.ajax({
+            type: 'GET',
+            url: '/Home/getNotifications',
+            success: function (data) {
+                HTML += '<div class="dropdown-divider"></div>';
+                HTML += '<a href="#" class="dropdown-item">';
+                HTML += '<i class="fas fa-envelope mr-2"></i>' + data.length + ' New messages';
+                HTML += '<span class="float-right text-muted text-sm">3 mins</span></a>';
+                HTML += '<div class="dropdown-divider"></div>';
+                HTML += '<a href="#" class="dropdown-item dropdown-footer" onclick="notificationDtls()">Notifications Details</a>';
+                $("#Notifications").html(HTML);
+                $("#notfCount").html(data.length);
+            }
+        });
+    }
+    function notificationDtls() {
+        var HTML = '';
+        $.ajax({
+            type: 'GET',
+            url: '/Home/getNotifications',
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    HTML += '<div class="col-md-12"><div class="timeline"><div>';
+                    HTML += '<i class="fas fa-envelope bg-blue"></i>';
+                    HTML += '<div class="timeline-item"><span class="time"><i class="fas fa-clock"></i>' + data[i].orderId + '</span>';
+                    HTML += '<h3 class="timeline-header">Your Id :<a href="#">' + data[i].freeLancerId + '</a></h3>';
+                    HTML += '<div class="timeline-body"><h3>' + data[i].desc + '</h3></div><div class="timeline-footer">';
+                    //HTML += '<div class="timeline-body">' + data[i].desc + '</div>';
+                    HTML += '<div class="timeline-header"><div class="row"><div class="col-4">Bid # : ' + data[i].bid + '</div>';
+                    HTML += '<div class="col-4">Completion Time : ' + data[i].deliveryDate + '</div>';
+                    HTML += '<div class="col-4">Proposed rate : $' + data[i].suggPrice + '</div></div></div>';
+                    HTML += '<br><div class="timeline-footer">';
+                    HTML += '<button class="btn btn-success btn-sm" style="color:white;margin-left:4px">' + data[i].status + '</button>';
+                    HTML += '</div></div></div></div></div></div>';
+                }
+                $("#mainContainer").html(HTML);
+            }
+        });
+    }
+    function hideTblOrders() {
+        $("#tbl_Orders").hide();
+        $("#contentHeader").show();
+    }
+    function gigWizard() {
+        $("#gigDetails").show();
+        $("#contentHeader").hide();
+        $("#content").hide();
+    }
+    function saveGig() {
+        Swal.fire({
+            title: 'Do you want to save the changes?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Save',
+            denyButtonText: `Don't save`,
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                Swal.fire('Saved!', '', 'success')
+            } else if (result.isDenied) {
+                Swal.fire('Changes are not saved', '', 'info')
+            }
+        });
+    }
+    function saveGigDetails() {
+        $.ajax({
+            type: 'POST',
+            url:'/Home/saveGigDetails',
+            data: {},
+            success: function (data) {
+
+            }
+        });
+    }
+</script>

@@ -1,0 +1,232 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Freelancing Portal</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/summernote/summernote-bs4.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="#"><strong>FreeLancing</strong>Portal</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card" id="loginForm">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Sign in to start your session</p>
+                <form method="post">
+                    <div class="input-group mb-3">
+                        <input type="email" required id="email_login" class="form-control" placeholder="Email">
+                     <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" required id="password_login" class="form-control" placeholder="Password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="button" class="btn btn-primary btn-block" onclick="login()">Sign In</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+                <p class="mb-0" style="text-align: center; margin-top: 25px;">
+                    <a href="#" onclick="swap1()" class="text-center">Register a new membership</a>
+                </p>
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+
+        <div class="card" id="registerForm">
+            <div class="card-body register-card-body">
+                <p class="login-box-msg">Register a new membership</p>
+
+                <form method="post">
+                    <div class="input-group mb-3">
+                <input type="text" required id="username_register" class="form-control" placeholder="Full name">
+                    <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="input-group mb-3">
+                        <input type="email" required id="email_register" class="form-control" placeholder="Email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" required id="password_register" class="form-control" placeholder="Password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" required id="cpassword" class="form-control" placeholder="Retype password" oninput="confirmPassword()">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class="col-1">
+                                <input type="radio" name="userType" required id="freeLancer" />
+                            </div>
+                            <div class="col-5">
+                                <span style="width:fit-content">FreeLancer</span>
+                            </div>
+                            <div class="col-1">
+                                <input type="radio" name="userType" required id="employer" />
+                            </div>
+                            <div class="col-5">
+                                <span style="width:fit-content">Client</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p id="pass_auth" style="text-align:center;margin-top:4px"></p>
+                    <div class="row">
+                        <div class="col-12">
+                            <button id="btn_register" type="button" onclick="register()" class="btn btn-primary btn-block">Register</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+                <p style="text-align:center;margin-top:25px;" class="mb-0">
+                    <a href="#" class="text-center" onclick="swap2()">I already have a membership</a>
+                </p>
+            </div>
+            <!-- /.form-box -->
+        </div><!-- /.card -->
+    </div>
+    <script src="~/solid/dist/js/main.min.js"></script>
+    <!-- jQuery -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#loginForm").show();
+            $("#registerForm").hide();
+        });
+     
+        function login() {
+            //var username = $("#name").val();
+            var email = $("#email_login").val();
+            var password = $("#password_login").val();
+        
+           $.ajax({
+                type: 'GET',
+                url: '/Home/login',
+                data: { 'email': email, 'password': password },
+                success: function (data) {
+                    if (data == "admin") {
+                        window.location.href = '/Home/Admin';
+                    }
+                    else if (data == "client") {
+                        window.location.href = '/Home/homePage';
+                    }
+                    else if (data == "freelancer") {
+                        window.location.href = '/Home/Dashboard';
+                    }
+                    else
+                        alert('Login Error!!!');
+                }
+            });
+        }
+        function register() {
+            //var username = $("#name").val();
+            var username = $("#username_register").val();
+            var email = $("#email_register").val();
+            var password = $("#password_register").val();
+            var userType;
+            if ($("#freeLancer").prop("checked")) {
+                userType = "freelancer";
+            }
+            else if ($("#employer").prop("checked")) {
+                userType = "Client";
+            }
+            $.ajax({
+                type: 'GET',
+                url: '/Home/register',
+                data: { 'username': username, 'email': email, 'password': password, 'userType': userType },
+                success: function (data) {
+                    window.location.href = '/Home/loginUser';
+                }
+            })
+            
+        }
+        function confirmPassword() {
+            if ($("#password_register").val() == $("#cpassword").val()) {
+                //debugger;
+                $("#pass_auth").text('Password matched');
+                $("#pass_auth").removeClass('btn-outline-danger');
+                $("#pass_auth").addClass('btn-outline-success');
+                $("#password_register").removeClass('btn-outline-danger');
+                $("#password_register").addClass('btn-outline-success');
+                $("#cpassword").removeClass('btn-outline-danger');
+                $("#cpassword").addClass('btn-outline-success');
+                $("#btn_register").show();
+            }
+            else {
+                $("#pass_auth").text('Password does not match !!');
+                $("#pass_auth").removeClass('btn-outline-success');
+                $("#pass_auth").addClass('btn-outline-danger');
+                $("#password_register").removeClass('btn-outline-success');
+                $("#password_register").addClass('btn-outline-danger');
+                $("#cpassword").removeClass('btn-outline-success');
+                $("#cpassword").addClass('btn-outline-danger');
+                $("#btn_register").hide();
+            }
+        }
+        function swap1() {
+            $("#loginForm").hide();
+            $("#registerForm").show();
+            $("#btn_register").hide();
+        }
+        function swap2() {
+            $("#loginForm").show();
+            $("#registerForm").hide();
+        }
+    </script>
+</body>
+</html>

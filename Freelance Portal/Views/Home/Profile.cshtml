@@ -1,0 +1,193 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Freelancing Portal</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.5/AdminLTE-3.0.5/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper" style="padding:70px">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content" style="margin-top: 15px; margin-bottom: 15px;">
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5" id="mainProfile" style="display:block;margin-left:auto;margin-right:auto">
+                            <!-- Profile Image -->
+                            <div class="card card-primary card-outline">
+                                <div class="card-body box-profile">
+                                    <div class="text-center">
+                                        <img class="profile-user-img img-fluid img-circle"
+                                             src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/dist/img/user4-128x128.jpg"
+                                             alt="User profile picture">
+                                    </div>
+
+                                    <h3 class="profile-username text-center" id="UserName"></h3>
+
+                                    <p class="text-muted text-center" id="accType"></p>
+
+                                    <ul class="list-group list-group-unbordered mb-3">
+                                        <li class="list-group-item">
+                                            <b>Projects</b> <a class="float-right">1,322</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Bids</b> <a class="float-right">543</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Rating</b> <a class="float-right">13,287</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Skills</b> <a class="float-right">13,287</a>
+                                        </li>
+                                    </ul>
+                                    <a href="#" class="btn btn-primary btn-block" id="btnEdit" onclick="edit()"><b>Edit Profile</b></a>
+                                    @*<a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>*@
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                        @*<div class="col-md-1"></div>*@
+                        <div class="col-md-5" id="editProfile" style="display:block;margin-left:auto;margin-right:auto">
+                            <!-- About Me Box -->
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">About Me</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="input-group mb-3">
+                                        <input type="text" required id="userName" class="form-control" placeholder="User Name">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-pencil-alt"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="input-group mb-3">
+                                        <input type="text" required id="userEmail" class="form-control" placeholder="Email">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-map-marker-alt"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="input-group mb-3">
+                                        <input type="text" required id="role" class="form-control" placeholder="Role">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-pencil-alt"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" id="location" placeholder="Location">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-file-alt"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="input-group mb-3" id="liSkills">
+                                        <input type="text" class="form-control" id="skill" placeholder="Skills">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-file-alt"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a style="cursor:pointer" class="btn btn-primary btn-block" id="btnSave" onclick="save()"><b>Save Changes</b></a>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+    </div>
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/plugins/bootstr~/AdminLTE-3.0.5/AdminLTE-3.0.5/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/di~/AdminLTE-3.0.5/AdminLTE-3.0.5/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/AdminLTE-3.0.5/AdminLTE-3.0.5/di~/AdminLTE-3.0.5/AdminLTE-3.0.5/demo.js"></script>
+    <script>
+        $(document).ready(function (){
+            $("#editProfile").hide();
+            getDetails();
+        });
+        function getDetails() {
+            $.ajax({
+                type: 'GET',
+                url: '/Home/getProfileDetails',
+                success: function (data) {
+                    //console.log(data);
+                    debugger;
+                    if (data.role == 'Client')
+                        $("#liSkills").hide();
+                    $("#UserName").html(data.userName);
+                    $("#userName").val(data.userName);
+                    $("#userEmail").val(data.userEmail);
+                    $("#accType").html(data.role);
+                    $("#role").val(data.role);
+                    $("#location").val(data.status);
+                    //console.log(data.location);
+                }
+            });
+        }
+        function edit() {
+            $("#mainProfile").hide();
+            $("#editProfile").show();
+        }
+        function save() {
+            $("#editProfile").hide();
+            $("#mainProfile").show();
+            var edu = $("#userName").val();
+            var loc = $("#location").val();
+            var skl = $("#skill").val();
+            var role = $("#role").val();
+            //console.log('yesss');
+            $.ajax({
+                type: 'POST',
+                url: '/Home/saveFreelancer',
+                data: { 'userName': edu, 'location': loc, 'skill': skl, 'role': role, 'email': $("#userEmail").val() }
+            }).done(function () {
+                alert('Added');
+            });
+        }
+        function savefreelancer() {
+        }
+    </script>
+</body>
+</html>
